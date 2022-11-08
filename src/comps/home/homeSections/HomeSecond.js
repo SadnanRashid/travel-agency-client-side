@@ -4,7 +4,7 @@ import React from "react";
 
 export default function HomeSecond() {
   return (
-    <div className="d-flex flex-col-custom mb-5 mt-5">
+    <div className="d-flex flex-col-custom mb-10 mt-5">
       <div className="home-second-box d-flex flex-column justify-content-center">
         <p className="display-6">Go Beyond Your Dreams</p>
         <hr />
