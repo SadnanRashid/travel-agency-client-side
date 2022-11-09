@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div className=" bg-dark">
+    <div className="font-light bg-dark">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-main">
         <div className="container-fluid">
           <img

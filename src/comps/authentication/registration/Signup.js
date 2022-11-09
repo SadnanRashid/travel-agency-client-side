@@ -13,11 +13,9 @@ export default function Signup() {
   const [error, setError] = useState(null);
   if (user) {
     // return <h2 className="mt-4 text-center mb-5">Loading ...</h2>;
-    navigate("/");
+    // navigate("/");
     return (
-      <h2 className="mt-4 text-center mb-5">
-        Already logged in. Redirecting to home
-      </h2>
+      <h2 className="mt-4 text-center mb-5 display-6">Already logged in.</h2>
     );
   }
   //

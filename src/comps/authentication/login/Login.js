@@ -3,6 +3,7 @@ import { app, auth } from "../../../firebase/firebase-config";
 import { BsGoogle } from "react-icons/bs";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [error, setError] = useState(null);
@@ -92,7 +93,7 @@ export default function Login() {
                 </button>
               </div>
               <div className="pt-4 text-center">
-                Get Members Benefit. <a href="#">Sign Up</a>
+                Become a Member Today. <Link to="/register">Sign Up</Link>
               </div>
               <h4>{error}</h4>
             </div>
