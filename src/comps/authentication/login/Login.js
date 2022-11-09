@@ -1,4 +1,5 @@
-import "./logic.css";
+import "./login.css";
+import { app, auth } from "../../../firebase/firebase-config";
 
 import React from "react";
 
