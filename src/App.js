@@ -7,6 +7,7 @@ import Main from "./layout/Main";
 import Home from "./comps/home/Home";
 import Login from "./comps/authentication/login/Login";
 import PrivateRoute from "./route/PrivateRoute";
+import Signup from "./comps/authentication/registration/Signup";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,10 @@ function App() {
         {
           path: "/login",
           element: <Login></Login>,
+        },
+        {
+          path: "/register",
+          element: <Signup></Signup>,
         },
       ],
     },

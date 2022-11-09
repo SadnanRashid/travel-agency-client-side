@@ -1,30 +1,58 @@
-import "./login.css";
-import { app, auth } from "../../../firebase/firebase-config";
+import "./signup.css";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase/firebase-config";
+import { updateProfile } from "firebase/auth";
 import { BsGoogle } from "react-icons/bs";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
-export default function Login() {
+export default function Signup() {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
-  function handleSubmit(e) {
+  if (user) {
+    // return <h2 className="mt-4 text-center mb-5">Loading ...</h2>;
+    navigate("/");
+    return (
+      <h2 className="mt-4 text-center mb-5">
+        Already logged in. Redirecting to home
+      </h2>
+    );
+  }
+  //
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    const username = form.name.value;
+    const Img = form.profileImg.value;
+    console.log(email, password, username, Img);
     //
-    signInWithEmailAndPassword(auth, email, password)
+    const profileData = {
+      displayName: username,
+      photoURL: Img,
+    };
+
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("signed in with", user.email);
-        // navigate(from, { replace: true });
+        // console.log(user);
+        setError(""); //Edit later
+        updateProfile(auth.currentUser, profileData)
+          .then(() => {})
+          .catch((error) => setError(error));
+        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        // console.log(errorMessage, errorCode);
         setError(errorMessage);
       });
-  }
+    //
+  };
   return (
     <div>
       <div className="container">
@@ -37,7 +65,7 @@ export default function Login() {
             />
           </div>
           <div className="col-md-12 col-lg-6 col-sm-12 bg-white p-5">
-            <h3 className="pb-3">Login Form</h3>
+            <h3 className="pb-3">Register Form</h3>
             <div className="form-style">
               <form onSubmit={handleSubmit}>
                 <div className="form-group pb-3">
@@ -50,6 +78,27 @@ export default function Login() {
                     aria-describedby="emailHelp"
                   />
                 </div>
+                {/*  */}
+                <div className="form-group pb-3">
+                  <input
+                    name="name"
+                    type="text"
+                    placeholder="Full Name"
+                    className="form-control"
+                    id="exampleInputName1"
+                  />
+                </div>
+                {/*  */}
+                <div className="form-group pb-3">
+                  <input
+                    name="profileImg"
+                    type="text"
+                    placeholder="Profile Image URL"
+                    className="form-control"
+                    id="exampleInputURL1"
+                  />
+                </div>
+                {/*  */}
                 <div className="form-group pb-3">
                   <input
                     name="password"
