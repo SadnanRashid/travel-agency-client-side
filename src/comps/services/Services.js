@@ -48,7 +48,7 @@ export default function Services() {
                   <p className="card-text">{e.desc.slice(0, 80)}</p>
                   <p className="text-muted">Price: {e.price}</p>
                   <Link to={`/services/${e._id}`}>
-                    <a className="btn btn-primary">Details</a>
+                    <p className="btn btn-primary m-0">Details</p>
                   </Link>
                 </div>
               </div>

@@ -3,32 +3,34 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import { ImLocation, ImClock2, ImUsers } from "react-icons/im";
 import ServiceDetailSide from "./ServiceDetailsSide";
+import ServiceReviews from "./reviews/ServiceReviews";
 
 export default function ServiceDetail() {
   const data = useLoaderData();
   console.log(data);
   return (
-    <div className="d-flex flex-row ms-3 me-3 justify-content-between service-detail-responsive">
-      <div className="service-detail-main mt-5">
-        <div>
-          <p className="display-5">{data.name} Tour Package</p>
-          <h5 className="font-light fw-bold">
-            {" "}
-            <ImLocation /> {data.location}
-          </h5>
-          <hr />
-          {/* small details */}
-          <div className="d-flex flex-row justify-content-between">
-            <div className="d-flex flex-row">
-              <h1 className="me-3">
-                <ImClock2 />
-              </h1>
-              <div>
-                <h5>Duration</h5>
-                <p>{data.duration}</p>
+    <div>
+      <div className="d-flex flex-row ms-3 me-3 justify-content-between service-detail-responsive">
+        <div className="service-detail-main mt-5">
+          <div>
+            <p className="display-5">{data.name}</p>
+            <h5 className="font-light fw-bold">
+              {" "}
+              <ImLocation /> {data.location}
+            </h5>
+            <hr />
+            {/* small details */}
+            <div className="d-flex flex-row justify-content-between">
+              <div className="d-flex flex-row">
+                <h1 className="me-3">
+                  <ImClock2 />
+                </h1>
+                <div>
+                  <h5>Duration</h5>
+                  <p>{data.duration}</p>
+                </div>
               </div>
-            </div>
-            {/* <div className="d-flex flex-row d-none">
+              {/* <div className="d-flex flex-row d-none">
             <h1 className="me-3">
               <ImUsers />
             </h1>
@@ -37,45 +39,48 @@ export default function ServiceDetail() {
               <p>Group</p>
             </div>
           </div> */}
-            <div className="d-flex flex-row">
-              <h1 className="me-3">
-                <ImLocation />
-              </h1>
-              <div>
-                <h5>Location</h5>
-                <p>{data.location}</p>
+              <div className="d-flex flex-row">
+                <h1 className="me-3">
+                  <ImLocation />
+                </h1>
+                <div>
+                  <h5>Location</h5>
+                  <p>{data.location}</p>
+                </div>
               </div>
             </div>
+            {/* end of small details */}
           </div>
-          {/* end of small details */}
+          {/* service details and image */}
+          <div className="mt-5 mb-5">
+            <img src={data.img} alt="" className="services-details-img" />
+            <div className="mt-4">
+              <p className="display-6 overview-text mb-3">Overview</p>
+              <p className="mt-3">{data.desc}</p>
+              <br />
+              <p>
+                {" "}
+                <span className="fw-bold h5">1.</span> {data.desc_1}
+              </p>
+              <br />
+              <p>
+                <span className="fw-bold h5">2.</span> {data.desc_2}
+              </p>
+              <br />
+              <p>
+                <span className="fw-bold h5">3.</span> {data.desc_3}
+              </p>
+              <br />
+            </div>
+          </div>
         </div>
-        {/* service details and image */}
-        <div className="mt-5 mb-5">
-          <img src={data.img} alt="" className="services-details-img" />
-          <div className="mt-4">
-            <p className="display-6 overview-text mb-3">Overview</p>
-            <p className="mt-3">{data.desc}</p>
-            <br />
-            <p>
-              {" "}
-              <span className="fw-bold h5">1.</span> {data.desc_1}
-            </p>
-            <br />
-            <p>
-              <span className="fw-bold h5">2.</span> {data.desc_2}
-            </p>
-            <br />
-            <p>
-              <span className="fw-bold h5">3.</span> {data.desc_3}
-            </p>
-            <br />
-          </div>
+        {/* side bar */}
+        <div>
+          <ServiceDetailSide price={data.price} />
         </div>
       </div>
-      {/* side bar */}
-      <div>
-        <ServiceDetailSide price={data.price} />
-      </div>
+      <hr />
+      <ServiceReviews props={data} />
     </div>
   );
 }

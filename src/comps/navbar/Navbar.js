@@ -1,6 +1,8 @@
 import "./navbar.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase-config";
 
 export default function Navbar() {
   return (
@@ -34,9 +36,7 @@ export default function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
+                <button onClick={logOut}>Logout</button>
               </li>
               <li className="nav-item dropdown">
                 <a
@@ -86,4 +86,10 @@ export default function Navbar() {
       </nav>
     </div>
   );
+}
+
+function logOut() {
+  signOut(auth)
+    .then(() => {})
+    .catch((error) => {});
 }

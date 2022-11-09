@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ImLocation } from "react-icons/im";
+import { Link } from "react-router-dom";
 
 export default function HomeServices() {
   const [data, setData] = useState([]);
@@ -45,7 +46,9 @@ export default function HomeServices() {
                   <h5 className="card-title fw-bold">{e.name}</h5>
                   <p className="card-text">{e.desc.slice(0, 80)}</p>
                   <p className="text-muted">Price: {e.price}</p>
-                  <a className="btn btn-primary">Details</a>
+                  <Link to={`/services/${e._id}`}>
+                    <p className="btn btn-primary m-0">Details</p>
+                  </Link>
                 </div>
               </div>
             );
