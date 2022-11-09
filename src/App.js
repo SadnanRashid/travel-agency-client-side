@@ -8,6 +8,8 @@ import Home from "./comps/home/Home";
 import Login from "./comps/authentication/login/Login";
 import PrivateRoute from "./route/PrivateRoute";
 import Signup from "./comps/authentication/registration/Signup";
+import Services from "./comps/services/Services";
+import ServiceDetail from "./service-detail/ServiceDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -26,6 +28,16 @@ function App() {
         {
           path: "/register",
           element: <Signup></Signup>,
+        },
+        {
+          path: "/services",
+          element: <Services></Services>,
+        },
+        {
+          path: "/services/:id",
+          loader: ({ params }) =>
+            fetch(`http://localhost:4000/services/${params.id}`),
+          element: <ServiceDetail></ServiceDetail>,
         },
       ],
     },

@@ -1,0 +1,10 @@
+.card-services {
+  /* width: 30%; */
+  width: 20rem;
+  height: 450px;
+}
+
+.card-services-img {
+  height: 200px;
+  width: 100%;
+}

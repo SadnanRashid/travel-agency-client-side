@@ -8,7 +8,7 @@ export default function HomeThird() {
       <div className="container-fluid">
         <div className="row justify-content-center">
           <div className="col-12 col-md-8 col-sm-12 col-xs-12">
-            <div className="card p-3 p-md-4 text-white">
+            <div className="card1 p-3 p-md-4 text-white">
               <span className="display-2">
                 <BsEnvelope />
               </span>

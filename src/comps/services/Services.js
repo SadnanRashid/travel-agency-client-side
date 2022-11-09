@@ -1,7 +1,9 @@
+import "./services.css";
 import React, { useEffect, useState } from "react";
 import { ImLocation } from "react-icons/im";
+import { Link } from "react-router-dom";
 
-export default function HomeServices() {
+export default function Services() {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = () => {
@@ -9,7 +11,7 @@ export default function HomeServices() {
         .then((res) => res.json())
         .then((dataa) => {
           console.log(dataa);
-          setData(dataa.slice(0, 3));
+          setData(dataa);
         });
     };
     fetchData();
@@ -45,7 +47,9 @@ export default function HomeServices() {
                   <h5 className="card-title fw-bold">{e.name}</h5>
                   <p className="card-text">{e.desc.slice(0, 80)}</p>
                   <p className="text-muted">Price: {e.price}</p>
-                  <a className="btn btn-primary">Details</a>
+                  <Link to={`/services/${e._id}`}>
+                    <a className="btn btn-primary">Details</a>
+                  </Link>
                 </div>
               </div>
             );

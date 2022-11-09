@@ -1,0 +1,28 @@
+.services-details-img {
+  width: 98%;
+  height: 35vw;
+  border-radius: 20px;
+}
+
+.overview-text {
+  border-bottom: 1px solid black;
+  display: inline;
+}
+
+.service-detail-main {
+  width: 60%;
+}
+
+.service-detail-sidebar {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+@media only screen and (max-width: 800px) {
+  .service-detail-responsive {
+    flex-direction: column !important;
+  }
+  .service-detail-main {
+    width: 100%;
+  }
+}
