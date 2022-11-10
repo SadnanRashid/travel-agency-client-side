@@ -25,6 +25,16 @@ export default function Login() {
       navigate(from, { replace: true });
     }
   }, [user?.email]);
+  // spinner
+  if (user) {
+    return (
+      <div className="d-flex justify-content-center mt-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
   // end of navigation
   // Google signin:
   function GoogleSignin() {
