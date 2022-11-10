@@ -10,6 +10,7 @@ import PrivateRoute from "./route/PrivateRoute";
 import Signup from "./comps/authentication/registration/Signup";
 import Services from "./comps/services/Services";
 import ServiceDetail from "./service-detail/ServiceDetail";
+import MyReviews from "./comps/account/myReviews/MyReviews";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,6 +39,14 @@ function App() {
           loader: ({ params }) =>
             fetch(`http://localhost:4000/services/${params.id}`),
           element: <ServiceDetail></ServiceDetail>,
+        },
+        {
+          path: "/my-reviews",
+          element: (
+            <PrivateRoute>
+              <MyReviews></MyReviews>
+            </PrivateRoute>
+          ),
         },
       ],
     },
