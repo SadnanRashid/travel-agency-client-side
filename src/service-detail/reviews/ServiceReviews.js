@@ -1,20 +1,21 @@
 import "./service-reviews.css";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ServiceReviewsList from "./ServiceReviewsList";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function ServiceReviews(props) {
-  const { _id } = props.props;
+  const { _id, name } = props.props;
   const id = _id;
   const { user } = useContext(AuthContext);
   const userEmail = user?.email;
   const photoURL = user?.photoURL;
   const userName = user?.displayName;
+  // For rerendering ui once review has been added
+  const [isAdded, setIsAdded] = useState(0);
   //   function to push data to database
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const name = form.username.value;
     const review = form.review.value;
     const exp = form.userExp.value;
     console.log(name, review, exp);
@@ -26,6 +27,7 @@ export default function ServiceReviews(props) {
       name: userName,
       rating: exp,
       review: review,
+      serviceName: name,
     };
     //
     fetch("http://localhost:4000/review", {
@@ -38,6 +40,10 @@ export default function ServiceReviews(props) {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.acknowledged) {
+          setIsAdded(isAdded + 1);
+          // this state will update and re-render the child comp. sent as props
+        }
       });
   };
   //
@@ -49,7 +55,7 @@ export default function ServiceReviews(props) {
         </p>
         <hr />
         <p className="display-4 mt-5 text-center"> Reviews: </p>
-        <ServiceReviewsList props={id} />
+        <ServiceReviewsList props={id} stat={isAdded} />
       </div>
     );
   }
@@ -89,7 +95,7 @@ export default function ServiceReviews(props) {
         </form>
       </div>
       <p className="display-4 mt-5 text-center"> Reviews: </p>
-      <ServiceReviewsList props={id} />
+      <ServiceReviewsList props={id} stat={isAdded} />
     </div>
   );
 }

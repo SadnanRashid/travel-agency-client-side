@@ -7,7 +7,6 @@ import ServiceReviews from "./reviews/ServiceReviews";
 
 export default function ServiceDetail() {
   const data = useLoaderData();
-  console.log(data);
   return (
     <div>
       <div className="d-flex flex-row ms-3 me-3 justify-content-between service-detail-responsive">

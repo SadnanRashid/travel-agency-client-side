@@ -39,7 +39,7 @@ export default function MyReviews() {
             return (
               <tr key={e._id}>
                 <th scope="row">{reviewIndex}</th>
-                <td>{e.serviceID}</td>
+                <td>{e.serviceName}</td>
                 <td>{e.rating}</td>
                 <td>{e.review}</td>
               </tr>
