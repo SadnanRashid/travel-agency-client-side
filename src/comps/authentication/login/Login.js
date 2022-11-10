@@ -32,7 +32,7 @@ export default function Login() {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        fetch(`http://localhost:4000/jsonWT/${user.email}`)
+        fetch(`https://server-side-tan.vercel.app/jsonWT/${user.email}`)
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -59,7 +59,7 @@ export default function Login() {
         const user = userCredential.user;
         console.log("signed in with", user.email);
         // jesonwebtoken api:
-        fetch(`http://localhost:4000/jsonWT/${user.email}`)
+        fetch(`https://server-side-tan.vercel.app/jsonWT/${user.email}`)
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

@@ -23,7 +23,7 @@ export default function AddService() {
       desc: desc,
     };
     // try post api
-    fetch("http://localhost:4000/add-service", {
+    fetch("https://server-side-tan.vercel.app/add-service", {
       method: "POST",
       headers: {
         "content-type": "application/json",

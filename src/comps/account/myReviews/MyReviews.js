@@ -13,11 +13,14 @@ export default function MyReviews() {
   const userEmail = user?.email;
   useEffect(() => {
     const fetchData = () => {
-      fetch(`http://localhost:4000/get-user-reviews/${userEmail}`, {
-        headers: {
-          authorization: `${localStorage.getItem("jsonToken")}`,
-        },
-      })
+      fetch(
+        `https://server-side-tan.vercel.app/get-user-reviews/${userEmail}`,
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jsonToken")}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((dataa) => {
           console.log(dataa);
@@ -37,7 +40,7 @@ export default function MyReviews() {
       "Are you sure, you want to delete this review?"
     );
     if (proceed) {
-      fetch(`http://localhost:4000/delete-reviews/${id}`, {
+      fetch(`https://server-side-tan.vercel.app/delete-reviews/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `${localStorage.getItem("jsonToken")}`,

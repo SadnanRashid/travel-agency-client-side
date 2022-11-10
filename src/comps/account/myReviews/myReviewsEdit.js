@@ -10,7 +10,7 @@ export default function MyReviewsEdit() {
     const review = form.review.value;
     const exp = form.userExp.value;
     //
-    fetch(`http://localhost:4000/reviews/${id}`, {
+    fetch(`https://server-side-tan.vercel.app/reviews/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

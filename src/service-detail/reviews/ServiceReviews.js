@@ -30,7 +30,7 @@ export default function ServiceReviews(props) {
       serviceName: name,
     };
     //
-    fetch("http://localhost:4000/review", {
+    fetch("https://server-side-tan.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

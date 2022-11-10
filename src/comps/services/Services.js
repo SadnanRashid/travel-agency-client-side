@@ -11,7 +11,7 @@ export default function Services() {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = () => {
-      fetch("http://localhost:4000/services")
+      fetch("https://server-side-tan.vercel.app/services")
         .then((res) => res.json())
         .then((dataa) => {
           console.log(dataa);
@@ -20,6 +20,17 @@ export default function Services() {
     };
     fetchData();
   }, []);
+
+  // spinner
+  if (data.length === 0) {
+    return (
+      <div className="d-flex justify-content-center mt-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>

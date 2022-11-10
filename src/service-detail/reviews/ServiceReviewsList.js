@@ -6,7 +6,7 @@ export default function ServiceReviewsList(props) {
   const [data, setData] = useState([]);
   useEffect(() => {
     const loadReviews = () => {
-      fetch(`http://localhost:4000/get-reviews/${id}`)
+      fetch(`https://server-side-tan.vercel.app/get-reviews/${id}`)
         .then((res) => res.json())
         .then((dataa) => {
           setData(dataa);
