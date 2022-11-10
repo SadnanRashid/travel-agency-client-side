@@ -12,6 +12,7 @@ import Services from "./comps/services/Services";
 import ServiceDetail from "./service-detail/ServiceDetail";
 import MyReviews from "./comps/account/myReviews/MyReviews";
 import AddService from "./comps/account/addService/AddService";
+import MyReviewsEdit from "./comps/account/myReviews/myReviewsEdit";
 
 function App() {
   const router = createBrowserRouter([
@@ -54,6 +55,14 @@ function App() {
           element: (
             <PrivateRoute>
               <MyReviews></MyReviews>
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/my-reviews-edit/:id",
+          element: (
+            <PrivateRoute>
+              <MyReviewsEdit></MyReviewsEdit>
             </PrivateRoute>
           ),
         },

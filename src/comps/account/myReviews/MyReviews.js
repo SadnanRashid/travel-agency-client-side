@@ -2,6 +2,7 @@ import "./myreviews.css";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { AiFillDelete, AiFillFolderAdd } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default function MyReviews() {
   const [data, setData] = useState([]);
@@ -36,6 +37,9 @@ export default function MyReviews() {
     if (proceed) {
       fetch(`http://localhost:4000/delete-reviews/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `${localStorage.getItem("jsonToken")}`,
+        },
       })
         .then((res) => res.json())
         .then((dataa) => {
@@ -87,11 +91,13 @@ export default function MyReviews() {
                         <AiFillDelete />
                       </p>
                     </button>
-                    <button className="btn">
-                      <p className="h5">
-                        <AiFillFolderAdd />
-                      </p>
-                    </button>
+                    <Link to={`/my-reviews-edit/${e._id}`}>
+                      <button className="btn">
+                        <p className="h5">
+                          <AiFillFolderAdd />
+                        </p>
+                      </button>
+                    </Link>
                   </div>
                 </td>
               </tr>
