@@ -4,8 +4,10 @@ import { useLoaderData } from "react-router-dom";
 import { ImLocation, ImClock2, ImUsers } from "react-icons/im";
 import ServiceDetailSide from "./ServiceDetailsSide";
 import ServiceReviews from "./reviews/ServiceReviews";
+import ChangeTitle from "../comps/titleFunc/titleFun";
 
 export default function ServiceDetail() {
+  ChangeTitle("Service Details");
   const data = useLoaderData();
   return (
     <div>

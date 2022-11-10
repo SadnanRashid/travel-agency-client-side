@@ -1,6 +1,8 @@
 import React from "react";
+import ChangeTitle from "../titleFunc/titleFun";
 
 export default function Blogs() {
+  ChangeTitle("Blogs");
   return (
     <div className="font-light fw-bold">
       <div className="accordion" id="accordionExample">

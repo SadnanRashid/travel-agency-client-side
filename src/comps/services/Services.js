@@ -4,8 +4,10 @@ import { ImLocation } from "react-icons/im";
 import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import ChangeTitle from "../titleFunc/titleFun";
 
 export default function Services() {
+  ChangeTitle("Services");
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = () => {

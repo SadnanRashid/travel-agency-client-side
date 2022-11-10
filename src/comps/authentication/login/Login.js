@@ -6,8 +6,10 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
+import ChangeTitle from "../../titleFunc/titleFun";
 
 export default function Login() {
+  ChangeTitle("Login");
   const [error, setError] = useState(null);
   const { user, loading } = useContext(AuthContext);
   // for navigation

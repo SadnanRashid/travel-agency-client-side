@@ -3,8 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { AiFillDelete, AiFillFolderAdd } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import ChangeTitle from "../../titleFunc/titleFun";
 
 export default function MyReviews() {
+  ChangeTitle("My Reviews");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);

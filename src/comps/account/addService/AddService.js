@@ -1,7 +1,9 @@
 import "./addservice.css";
 import React, { useState } from "react";
+import ChangeTitle from "../../titleFunc/titleFun";
 
 export default function AddService() {
+  ChangeTitle("Add Service");
   const [isAdded, setIsAdded] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -6,8 +6,10 @@ import { auth } from "../../../firebase/firebase-config";
 import { updateProfile } from "firebase/auth";
 import { BsGoogle } from "react-icons/bs";
 import { AuthContext } from "../../../context/AuthContext";
+import ChangeTitle from "../../titleFunc/titleFun";
 
 export default function Signup() {
+  ChangeTitle("Register");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
@@ -124,23 +126,6 @@ export default function Signup() {
                   </button>
                 </div>
               </form>
-              <div className="d-flex flex-row justify-content-center">
-                <h6 className="fw-normal text-center">OR</h6>
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100 font-weight-bold mt-2"
-                >
-                  Log in with{" "}
-                  <span className="ms-2 h4">
-                    <BsGoogle />
-                  </span>
-                </button>
-              </div>
-              <div className="pt-4 text-center">
-                Get Members Benefit. <a href="#">Sign Up</a>
-              </div>
               <h4>{error}</h4>
             </div>
           </div>
