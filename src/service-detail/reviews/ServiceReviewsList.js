@@ -37,7 +37,7 @@ export default function ServiceReviewsList(props) {
               </div>
               <div className="d-flex flex-row mt-3">
                 <h5>Rating: {e.rating}</h5>
-                <h5 className="ms-4">Date: YetToAdd</h5>
+                {/* <h5 className="ms-4">Date: YetToAdd</h5> */}
               </div>
               <hr />
               <p>{e.review}</p>
