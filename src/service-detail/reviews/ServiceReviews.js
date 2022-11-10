@@ -34,6 +34,7 @@ export default function ServiceReviews(props) {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `${localStorage.getItem("jsonToken")}`,
       },
       body: JSON.stringify(reviewData),
     })
@@ -44,6 +45,7 @@ export default function ServiceReviews(props) {
           setIsAdded(
             `The review has been added successfully. Id of database: ${data.insertedId}`
           );
+          form.reset();
         } else {
           setIsAdded(`The review could not be added. Please try again!`);
         }

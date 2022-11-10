@@ -31,9 +31,13 @@ export default function Login() {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("signed in with", user.email);
-        // navigate("/");
-        // navigate(`${from}`, { replace: true });
-        // navigate(from, { replace: true });
+        // jesonwebtoken api:
+        fetch(`http://localhost:4000/jsonWT/${user.email}`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("jsonToken", data.token);
+          });
       })
       .catch((error) => {
         const errorCode = error.code;

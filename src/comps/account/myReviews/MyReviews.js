@@ -10,7 +10,11 @@ export default function MyReviews() {
   const userEmail = user?.email;
   useEffect(() => {
     const fetchData = () => {
-      fetch(`http://localhost:4000/get-user-reviews/${userEmail}`)
+      fetch(`http://localhost:4000/get-user-reviews/${userEmail}`, {
+        headers: {
+          authorization: `${localStorage.getItem("jsonToken")}`,
+        },
+      })
         .then((res) => res.json())
         .then((dataa) => {
           console.log(dataa);
