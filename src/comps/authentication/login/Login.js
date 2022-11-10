@@ -2,22 +2,37 @@ import "./login.css";
 import { app, auth } from "../../../firebase/firebase-config";
 import { BsGoogle } from "react-icons/bs";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
 
 export default function Login() {
   const [error, setError] = useState(null);
+  const { user, loading } = useContext(AuthContext);
+  // for navigation
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  console.log("this", from);
+  // useEffect to redirect to previous page if user is loggedin
+  useEffect(() => {
+    if (user?.email) {
+      navigate(from, { replace: true });
+    }
+  }, [user?.email]);
+  // end of navigation
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
     //
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("signed in with", user.email);
+        // navigate("/");
+        // navigate(`${from}`, { replace: true });
         // navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -26,6 +41,7 @@ export default function Login() {
         setError(errorMessage);
       });
   }
+  //
   return (
     <div>
       <div className="container">
