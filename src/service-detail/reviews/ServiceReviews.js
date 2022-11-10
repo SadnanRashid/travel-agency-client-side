@@ -11,7 +11,7 @@ export default function ServiceReviews(props) {
   const photoURL = user?.photoURL;
   const userName = user?.displayName;
   // For rerendering ui once review has been added
-  const [isAdded, setIsAdded] = useState(0);
+  const [isAdded, setIsAdded] = useState("");
   //   function to push data to database
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,12 +41,15 @@ export default function ServiceReviews(props) {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          setIsAdded(isAdded + 1);
-          // add modal or taost here
+          setIsAdded(
+            `The review has been added successfully. Id of database: ${data.insertedId}`
+          );
+        } else {
+          setIsAdded(`The review could not be added. Please try again!`);
         }
       });
   };
-  //
+  //if the user is not logged in
   if (!user?.email) {
     return (
       <div>
@@ -59,7 +62,7 @@ export default function ServiceReviews(props) {
       </div>
     );
   }
-  //
+  //if the user is logged in
   return (
     <div className="mb-5">
       <div className="font-light ms-5 me-5 p-4 style-add-review">
@@ -89,6 +92,8 @@ export default function ServiceReviews(props) {
           <button
             type="submit"
             className="btn btn-dark w-100 font-weight-bold mt-2"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
           >
             Submit
           </button>
@@ -96,6 +101,45 @@ export default function ServiceReviews(props) {
       </div>
       <p className="display-4 mt-5 text-center"> Reviews: </p>
       <ServiceReviewsList props={id} />
+      {/* modal popup: */}
+      <div>
+        <>
+          {/* Modal */}
+          <div
+            className="modal fade"
+            id="exampleModal"
+            tabIndex={-1}
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    Review Confermation
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  />
+                </div>
+                <div className="modal-body">{isAdded}</div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      </div>
     </div>
   );
 }

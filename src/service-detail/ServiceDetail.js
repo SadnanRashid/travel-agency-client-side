@@ -57,18 +57,11 @@ export default function ServiceDetail() {
               <p className="display-6 overview-text mb-3">Overview</p>
               <p className="mt-3">{data.desc}</p>
               <br />
-              <p>
-                {" "}
-                <span className="fw-bold h5">1.</span> {data.desc_1}
-              </p>
+              <p> {data.desc_1}</p>
               <br />
-              <p>
-                <span className="fw-bold h5">2.</span> {data.desc_2}
-              </p>
+              <p>{data.desc_2}</p>
               <br />
-              <p>
-                <span className="fw-bold h5">3.</span> {data.desc_3}
-              </p>
+              <p>{data.desc_3}</p>
               <br />
             </div>
           </div>

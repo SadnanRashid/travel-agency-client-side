@@ -11,6 +11,7 @@ import Signup from "./comps/authentication/registration/Signup";
 import Services from "./comps/services/Services";
 import ServiceDetail from "./service-detail/ServiceDetail";
 import MyReviews from "./comps/account/myReviews/MyReviews";
+import AddService from "./comps/account/addService/AddService";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +34,14 @@ function App() {
         {
           path: "/services",
           element: <Services></Services>,
+        },
+        {
+          path: "/add-services",
+          element: (
+            <PrivateRoute>
+              <AddService></AddService>
+            </PrivateRoute>
+          ),
         },
         {
           path: "/services/:id",
