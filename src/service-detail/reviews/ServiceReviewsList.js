@@ -1,8 +1,7 @@
 import "./service-reviews.css";
 import React, { useEffect, useState } from "react";
 
-export default function ServiceReviewsList(props, stat) {
-  // stat is a state sent from parent comp. It is used so the child comp would re render. However has no real functional use
+export default function ServiceReviewsList(props) {
   const id = props.props;
   const [data, setData] = useState([]);
   useEffect(() => {

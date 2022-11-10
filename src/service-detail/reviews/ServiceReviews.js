@@ -42,7 +42,7 @@ export default function ServiceReviews(props) {
         console.log(data);
         if (data.acknowledged) {
           setIsAdded(isAdded + 1);
-          // this state will update and re-render the child comp. sent as props
+          // add modal or taost here
         }
       });
   };
@@ -55,7 +55,7 @@ export default function ServiceReviews(props) {
         </p>
         <hr />
         <p className="display-4 mt-5 text-center"> Reviews: </p>
-        <ServiceReviewsList props={id} stat={isAdded} />
+        <ServiceReviewsList props={id} />
       </div>
     );
   }
@@ -95,7 +95,7 @@ export default function ServiceReviews(props) {
         </form>
       </div>
       <p className="display-4 mt-5 text-center"> Reviews: </p>
-      <ServiceReviewsList props={id} stat={isAdded} />
+      <ServiceReviewsList props={id} />
     </div>
   );
 }
