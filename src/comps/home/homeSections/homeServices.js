@@ -9,8 +9,10 @@ export default function HomeServices() {
       fetch("http://localhost:4000/services")
         .then((res) => res.json())
         .then((dataa) => {
-          console.log(dataa);
-          setData(dataa.slice(0, 3));
+          // Below algo is to display newly added datas first ;)
+          const dataaLength = dataa.length;
+          dataa = dataa.slice(dataaLength - 3, dataaLength);
+          setData(dataa.reverse());
         });
     };
     fetchData();

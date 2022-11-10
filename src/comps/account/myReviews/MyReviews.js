@@ -5,6 +5,7 @@ import { AiFillDelete, AiFillFolderAdd } from "react-icons/ai";
 
 export default function MyReviews() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
   const userEmail = user?.email;
   useEffect(() => {
@@ -14,11 +15,11 @@ export default function MyReviews() {
         .then((dataa) => {
           console.log(dataa);
           setData(dataa);
+          setLoading(true);
         })
         .catch((e) => console.log(e));
     };
     fetchData();
-    console.log(data);
   }, [user?.email]);
   //   variable to index table rows
   let reviewIndex = 0;
@@ -36,13 +37,18 @@ export default function MyReviews() {
         .then((dataa) => {
           if (dataa.deletedCount > 0) {
             alert("Review deleted successfully");
-            const remaining = data.filter((rev) => rev._id !== id);
-            setData(remaining);
+            const remainingData = data.filter((rev) => rev._id !== id);
+            setData(remainingData);
           }
         });
     }
-    //
   };
+  // return no reviews found if user has not added any reviews
+  if (loading === true && data.length === 0) {
+    return (
+      <p className="mt-5 mb-5 display-6 text-center">No reviews were added</p>
+    );
+  }
   //
   return (
     <div className="mt-5">
