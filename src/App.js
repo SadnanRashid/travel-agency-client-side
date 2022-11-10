@@ -13,6 +13,7 @@ import ServiceDetail from "./service-detail/ServiceDetail";
 import MyReviews from "./comps/account/myReviews/MyReviews";
 import AddService from "./comps/account/addService/AddService";
 import MyReviewsEdit from "./comps/account/myReviews/myReviewsEdit";
+import Blogs from "./comps/blogs/Blogs";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function App() {
         {
           path: "/login",
           element: <Login></Login>,
+        },
+        {
+          path: "/blogs",
+          element: <Blogs></Blogs>,
         },
         {
           path: "/register",

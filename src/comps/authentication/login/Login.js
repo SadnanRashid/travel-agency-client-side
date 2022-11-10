@@ -2,6 +2,7 @@ import "./login.css";
 import { app, auth } from "../../../firebase/firebase-config";
 import { BsGoogle } from "react-icons/bs";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
@@ -21,6 +22,30 @@ export default function Login() {
     }
   }, [user?.email]);
   // end of navigation
+  // Google signin:
+  function GoogleSignin() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        fetch(`http://localhost:4000/jsonWT/${user.email}`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("jsonToken", data.token);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessageG = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        setError(errorMessageG);
+      });
+  }
+  //
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
@@ -105,6 +130,7 @@ export default function Login() {
                 <button
                   type="submit"
                   className="btn btn-primary w-100 font-weight-bold mt-2"
+                  onClick={GoogleSignin}
                 >
                   Log in with{" "}
                   <span className="ms-2 h4">

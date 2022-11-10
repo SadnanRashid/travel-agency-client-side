@@ -1,10 +1,12 @@
 import "./navbar.css";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase-config";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Navbar() {
+  const { user } = useContext(AuthContext);
   return (
     <div className="font-light bg-dark">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-main">
@@ -29,57 +31,49 @@ export default function Navbar() {
             className="collapse navbar-collapse w-75 margin-nav"
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 mobile-responsive-navbar">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <button onClick={logOut}>Logout</button>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
+                <Link to="/">
+                  <button className="fw-bold btn me-2 mb-2">Home</button>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link disabled"
-                  href="#"
-                  tabIndex={-1}
-                  aria-disabled="true"
-                >
-                  Disabled
-                </a>
+                <Link to="/blogs">
+                  <button className="fw-bold btn me-2 mb-2">Blogs</button>
+                </Link>
               </li>
+              <li className="nav-item">
+                <Link to="/services">
+                  <button className="fw-bold btn me-2 mb-2">Services</button>
+                </Link>
+              </li>
+              {user?.email ? (
+                <div className="d-flex flex-row mobile-responsive-navbar-flex">
+                  <li className="nav-item">
+                    <Link to="/my-reviews">
+                      <button className="fw-bold btn me-2 mb-2">
+                        My Reviews
+                      </button>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/add-services">
+                      <button className="fw-bold btn me-2 mb-2">
+                        Add Service
+                      </button>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <button className="btn fw-bold " onClick={logOut}>
+                      Logout
+                    </button>
+                  </li>{" "}
+                </div>
+              ) : (
+                <Link to="/login">
+                  <button className="fw-bold btn me-2 mb-2">Login</button>
+                </Link>
+              )}
             </ul>
           </div>
         </div>

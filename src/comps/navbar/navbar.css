@@ -1,6 +1,6 @@
 .navbar-main {
   width: 80%;
-  margin-left: 10%;
+  margin-left: 3%;
 }
 
 .margin-nav {
@@ -11,9 +11,24 @@
   width: 11%;
 }
 
-@media only screen and (max-width: 769px) {
-  .logo {
+@media only screen and (max-width: 900px) {
+  .logo-img {
     width: 25%;
     margin-top: 5px;
+  }
+  .mobile-responsive-navbar-flex {
+    flex-direction: column !important;
+  }
+  .mobile-responsive-navbar {
+    margin-left: 74%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .logo-img {
+    width: 35%;
+    margin-top: 5px;
+  }
+  .mobile-responsive-navbar {
+    margin-left: 50%;
   }
 }

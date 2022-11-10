@@ -2,6 +2,8 @@ import "./services.css";
 import React, { useEffect, useState } from "react";
 import { ImLocation } from "react-icons/im";
 import { Link } from "react-router-dom";
+import "react-photo-view/dist/react-photo-view.css";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 export default function Services() {
   const [data, setData] = useState([]);
@@ -27,11 +29,15 @@ export default function Services() {
           {data.map((e) => {
             return (
               <div className="card col-md-12 card-services m-3" key={e._id}>
-                <img
-                  src={e.img}
-                  className="card-img-top card-services-img mt-2"
-                  alt="..."
-                />
+                <PhotoProvider>
+                  <PhotoView src={e.img}>
+                    <img
+                      src={e.img}
+                      className="card-img-top card-services-img mt-2"
+                    />
+                  </PhotoView>
+                </PhotoProvider>
+
                 <div className="d-flex flex-row justify-content-between">
                   <p className="mb-0">
                     <span>
