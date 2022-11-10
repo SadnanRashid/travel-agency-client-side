@@ -1,6 +1,6 @@
 import "./signup.css";
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
 import { updateProfile } from "firebase/auth";
@@ -11,13 +11,25 @@ import ChangeTitle from "../../titleFunc/titleFun";
 export default function Signup() {
   ChangeTitle("Register");
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  // navigate
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    setLoading(true);
+    if (user?.email) {
+      navigate("/");
+    }
+  }, [user?.email]);
   if (user) {
-    // return <h2 className="mt-4 text-center mb-5">Loading ...</h2>;
-    // navigate("/");
     return (
-      <h2 className="mt-4 text-center mb-5 display-6">Already logged in.</h2>
+      <div className="d-flex justify-content-center mt-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
     );
   }
   //
