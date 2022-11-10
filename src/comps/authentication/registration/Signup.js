@@ -17,6 +17,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  // check loading status
   useEffect(() => {
     setLoading(true);
     if (user?.email) {
@@ -55,6 +56,13 @@ export default function Signup() {
         updateProfile(auth.currentUser, profileData)
           .then(() => {})
           .catch((error) => setError(error));
+        // json token get
+        fetch(`https://server-side-tan.vercel.app/jsonWT/${user.email}`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("jsonToken", data.token);
+          });
         navigate("/");
       })
       .catch((error) => {
