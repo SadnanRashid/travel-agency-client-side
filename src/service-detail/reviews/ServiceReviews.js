@@ -41,9 +41,21 @@ export default function ServiceReviews(props) {
       });
   };
   //
+  if (!user?.email) {
+    return (
+      <div>
+        <p className="display-4 mt-5 mb-5 text-center">
+          Please Login To Post Review
+        </p>
+        <hr />
+        <p className="display-4 mt-5 text-center"> Reviews: </p>
+        <ServiceReviewsList props={id} />
+      </div>
+    );
+  }
+  //
   return (
     <div className="mb-5">
-      <p className="display-4 mt-4 text-center"> Reviews: </p>
       <div className="font-light ms-5 me-5 p-4 style-add-review">
         <p className="display-6">Write your review: </p>
         <form onSubmit={handleSubmit}>
@@ -76,7 +88,14 @@ export default function ServiceReviews(props) {
           </button>
         </form>
       </div>
+      <p className="display-4 mt-5 text-center"> Reviews: </p>
       <ServiceReviewsList props={id} />
     </div>
   );
+}
+
+{
+  /* <p className="display-4 mt-5 mb-5 text-center">
+Please Login To Post Review
+</p> */
 }

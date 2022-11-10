@@ -55,6 +55,9 @@ export default function HomeServices() {
           })}
         </div>
       </div>
+      <Link to="/services" className="d-flex justify-content-center">
+        <p className="btn btn-primary w-50">See All Services</p>
+      </Link>
     </div>
   );
 }
