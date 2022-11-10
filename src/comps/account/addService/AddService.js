@@ -1,7 +1,8 @@
 import "./addservice.css";
-import React from "react";
+import React, { useState } from "react";
 
 export default function AddService() {
+  const [isAdded, setIsAdded] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,7 +12,33 @@ export default function AddService() {
     const price = form.servicePrice.value;
     const duration = form.serviceDuration.value;
     const desc = form.serviceDesc.value;
-    console.log(name, location, desc, price, duration, img);
+    const doc = {
+      name: name,
+      location: location,
+      img: img,
+      price: price,
+      duration: duration,
+      desc: desc,
+    };
+    // try post api
+    fetch("http://localhost:4000/add-service", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(doc),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          setIsAdded(
+            `The review has been added successfully. Id of database: ${data.insertedId}`
+          );
+        } else {
+          setIsAdded(`The review could not be added. Please try again!`);
+        }
+      });
+    //
   };
   return (
     <div>
@@ -87,7 +114,7 @@ export default function AddService() {
                 <div className="modal-content">
                   <div className="modal-header">
                     <h5 className="modal-title" id="exampleModalLabel">
-                      Review Confermation
+                      Service Confermation
                     </h5>
                     <button
                       type="button"
@@ -96,7 +123,7 @@ export default function AddService() {
                       aria-label="Close"
                     />
                   </div>
-                  <div className="modal-body">MODALBODY</div>
+                  <div className="modal-body">{isAdded}</div>
                   <div className="modal-footer">
                     <button
                       type="button"
